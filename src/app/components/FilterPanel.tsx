@@ -25,9 +25,9 @@ export function FilterPanel({ isOpen, activeFilter, onFilterChange, onClose }: F
             exit={{ opacity: 0 }}
             onClick={onClose}
           />
-          
+
           <motion.div
-            className="fixed top-0 right-0 bottom-0 w-full sm:w-96 bg-zinc-950 z-50 border-l border-white/10 shadow-2xl"
+            className="fixed top-0 right-0 bottom-0 w-full sm:w-96 bg-zinc-950 z-50 border-l border-white/10 shadow-2xl overflow-y-auto"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -35,24 +35,23 @@ export function FilterPanel({ isOpen, activeFilter, onFilterChange, onClose }: F
           >
             <div className="p-8 pt-24">
               <h2 className="text-white mb-8 tracking-tight">Filter by Category</h2>
-              
+
               <div className="space-y-3">
                 <motion.button
                   onClick={() => {
                     onFilterChange(null);
                     onClose();
                   }}
-                  className={`w-full text-left px-6 py-4 rounded-lg transition-all ${
-                    activeFilter === null
+                  className={`w-full text-left px-6 py-4 rounded-lg transition-all ${activeFilter === null
                       ? 'bg-white text-black'
                       : 'bg-white/5 text-white hover:bg-white/10'
-                  }`}
+                    }`}
                   whileHover={{ x: 8 }}
                   transition={{ type: 'spring', stiffness: 400, damping: 20 }}
                 >
                   All Projects
                 </motion.button>
-                
+
                 {categories.map((category) => (
                   <motion.button
                     key={category}
@@ -60,11 +59,10 @@ export function FilterPanel({ isOpen, activeFilter, onFilterChange, onClose }: F
                       onFilterChange(category);
                       onClose();
                     }}
-                    className={`w-full text-left px-6 py-4 rounded-lg transition-all ${
-                      activeFilter === category
+                    className={`w-full text-left px-6 py-4 rounded-lg transition-all ${activeFilter === category
                         ? 'bg-white text-black'
                         : 'bg-white/5 text-white hover:bg-white/10'
-                    }`}
+                      }`}
                     whileHover={{ x: 8 }}
                     transition={{ type: 'spring', stiffness: 400, damping: 20 }}
                   >
@@ -72,7 +70,7 @@ export function FilterPanel({ isOpen, activeFilter, onFilterChange, onClose }: F
                   </motion.button>
                 ))}
               </div>
-              
+
               <div className="mt-12 pt-8 border-t border-white/20 space-y-3">
                 <motion.button
                   onClick={() => {
@@ -86,7 +84,7 @@ export function FilterPanel({ isOpen, activeFilter, onFilterChange, onClose }: F
                   <Home size={20} />
                   <span>Home</span>
                 </motion.button>
-                
+
                 <motion.button
                   onClick={() => {
                     navigate('/about');
@@ -99,7 +97,7 @@ export function FilterPanel({ isOpen, activeFilter, onFilterChange, onClose }: F
                   <User size={20} />
                   <span>About Me</span>
                 </motion.button>
-                
+
                 <motion.button
                   onClick={() => {
                     navigate('/contact');
@@ -113,7 +111,7 @@ export function FilterPanel({ isOpen, activeFilter, onFilterChange, onClose }: F
                   <span>Contact</span>
                 </motion.button>
               </div>
-              
+
               <div className="mt-8 pt-8 border-t border-white/10">
                 <p className="text-white/40 text-sm">
                   {activeFilter ? `Showing ${activeFilter} projects` : 'Showing all projects'}
